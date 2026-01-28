@@ -1,0 +1,484 @@
+# Residential-Landscaping
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Residential Landscaping in Metro Detroit - Weeding, bush trimming, bed fixes/removal, tarp installation, and basic yard maintenance." />
+  <title>Residential Landscaping | Metro Detroit</title>
+
+  <style>
+    :root{
+      --bg: #0c1210;
+      --card: rgba(255,255,255,.08);
+      --text: #f2f6f3;
+      --muted: rgba(242,246,243,.75);
+      --accent: #37d67a;
+      --accent2: #22b15c;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(55,214,122,.18), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 20%, rgba(34,177,92,.14), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.5;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+
+    /* Top Bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(12,18,16,.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width:38px;
+      height:38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 22px rgba(55,214,122,.25);
+    }
+    .links{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .links a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+      transition: .2s ease;
+    }
+    .links a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+    }
+    .cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #07110a;
+      box-shadow: 0 12px 28px rgba(55,214,122,.18);
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+
+    /* Hero */
+    header.hero{
+      padding: 56px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .heroCard{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      overflow:hidden;
+      position: relative;
+    }
+    .heroCard::after{
+      content:"";
+      position:absolute;
+      inset:-80px -120px auto auto;
+      width: 260px; height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(55,214,122,.35), transparent 60%);
+      transform: rotate(20deg);
+      pointer-events:none;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+    }
+    .sub{
+      margin:0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 56ch;
+    }
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 16px 0 18px;
+    }
+    .pill{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .sideCard{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .sideTitle{
+      margin:0 0 6px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .sideText{
+      margin:0;
+      color: var(--muted);
+    }
+    .contactBox{
+      background: rgba(0,0,0,.2);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .contactLine{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .contactLine strong{ color: var(--text); }
+
+    /* Sections */
+    section{
+      padding: 42px 0;
+    }
+    .sectionTitle{
+      margin: 0 0 10px;
+      font-size: 24px;
+      letter-spacing:.2px;
+    }
+    .sectionSub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
+      transition: .2s ease;
+    }
+    .card:hover{ transform: translateY(-2px); }
+    .card h3{ margin: 0 0 8px; font-size: 18px; }
+    .card p{ margin: 0; color: var(--muted); }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 42px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+    }
+    .footRow{
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* Scroll to top button */
+    #toTop{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      display:none;
+    }
+    #toTop:hover{ background: rgba(255,255,255,.14); }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .twoCol{ grid-template-columns: 1fr; }
+      .links{ display:none; } /* keeps it simple on mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:16px;">Residential Landscaping</div>
+            <div style="font-size:12px; color: var(--muted); margin-top:2px;">Metro Detroit</div>
+          </div>
+        </div>
+
+        <div class="links" aria-label="Site navigation">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#process">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="cta">
+          <a class="btn" href="tel:2483316495">Call: (248) 331-6495</a>
+          <a class="btn primary" href="#contact">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <h1>Clean, simple yard work done right in Metro Detroit.</h1>
+          <p class="sub">
+            We help homeowners keep their landscaping neat and low-stress—fast communication, fair pricing, and clean results.
+          </p>
+
+          <div class="pillRow">
+            <div class="pill">Weeding</div>
+            <div class="pill">Bush Trimming</div>
+            <div class="pill">Bed Fixing / Removal</div>
+            <div class="pill">Tarp Installation</div>
+            <div class="pill">Basic Yard Cleanup</div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="tel:2483316495">Call Now</a>
+            <a class="btn" href="#services">View Services</a>
+          </div>
+
+          <p style="margin:16px 0 0; color: var(--muted); font-size: 13px;">
+            Phone: <strong style="color:var(--text)">(248) 331-6495</strong>
+          </p>
+        </div>
+
+        <aside class="sideCard" id="contact">
+          <div>
+            <p class="sideTitle">Request a quick quote</p>
+            <p class="sideText">Call or text with your address + what you need done.</p>
+          </div>
+
+          <div class="contactBox">
+            <div class="contactLine"><span>Phone</span><strong>(248) 331-6495</strong></div>
+            <div class="contactLine"><span>Service Area</span><strong>Metro Detroit</strong></div>
+            <div class="contactLine"><span>Availability</span><strong>Weekdays & Weekends</strong></div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="tel:2483316495">Call (Tap to dial)</a>
+            <a class="btn" href="sms:2483316495">Text Us</a>
+          </div>
+
+          <p style="margin:0; color: var(--muted); font-size: 12px;">
+            Tip: Include photos for the fastest quote.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="wrap">
+      <h2 class="sectionTitle">Services</h2>
+      <p class="sectionSub">
+        Straightforward residential landscaping help—perfect for keeping your yard tidy without overcomplicating it.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Weeding</h3>
+          <p>Hand weeding and cleanup to keep beds, edges, and walkways looking sharp.</p>
+        </div>
+        <div class="card">
+          <h3>Bush Trimming</h3>
+          <p>Basic trimming and shaping for bushes and shrubs to improve curb appeal.</p>
+        </div>
+        <div class="card">
+          <h3>Bed Fixing / Removal</h3>
+          <p>Clean up messy beds, redefine edges, or remove beds you no longer want.</p>
+        </div>
+        <div class="card">
+          <h3>Tarp Installation</h3>
+          <p>Lay tarps over beds for weed control (great before mulch/stone projects).</p>
+        </div>
+        <div class="card">
+          <h3>Basic Yard Cleanup</h3>
+          <p>Leaves, debris, and general tidy-up to get your yard back in shape.</p>
+        </div>
+        <div class="card">
+          <h3>Custom Requests</h3>
+          <p>Not sure if we do it? Call or text—if it’s basic residential landscaping, we’ll help.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" href="tel:2483316495">Call for Pricing</a>
+        <a class="btn" href="#process">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="twoCol">
+        <div class="card">
+          <h3>About Residential Landscaping</h3>
+          <p>
+            We’re a local Metro Detroit residential landscaping service focused on simple, reliable yard work.
+            The goal is easy: show up, do clean work, and leave your property looking better than we found it.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Why homeowners choose us</h3>
+          <p>
+            Quick communication, fair quotes, and neat results. Whether you need one-time help or occasional touch-ups,
+            we keep it simple and professional.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <h2 class="sectionTitle">How it works</h2>
+      <p class="sectionSub">A simple process that keeps everything fast and clear.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>1) Reach out</h3>
+          <p>Call or text <strong style="color:var(--text)">(248) 331-6495</strong> with what you need done.</p>
+        </div>
+        <div class="card">
+          <h3>2) Quick quote</h3>
+          <p>Send photos (optional but helpful). We’ll give a straightforward price estimate.</p>
+        </div>
+        <div class="card">
+          <h3>3) We get it done</h3>
+          <p>We arrive, handle the work, and clean up so your yard looks great.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div class="card">
+          <h3>Want the fastest quote?</h3>
+          <p>Text: your address + what services you want + photos of the area.</p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="sms:2483316495">Text Us Now</a>
+            <a class="btn" href="tel:2483316495">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footRow">
+        <div>
+          <div style="font-weight:800; color: var(--text);">Residential Landscaping</div>
+          <div>Metro Detroit • <a href="tel:2483316495" style="text-decoration:underline;">(248) 331-6495</a></div>
+        </div>
+        <div style="font-size:12px;">
+          © <span id="year"></span> Residential Landscaping. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Scroll to top">↑ Top</button>
+
+  <script>
+    // auto year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // show/hide scroll-to-top button
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      toTop.style.display = window.scrollY > 500 ? "block" : "none";
+    });
+    toTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
+
+
